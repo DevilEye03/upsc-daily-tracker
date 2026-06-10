@@ -225,6 +225,19 @@ const StorageManager = {
   },
 
   /**
+   * Updates mobile screen time for a specific day.
+   */
+  saveScreenTime(dayIndex, hours) {
+    const state = this.loadState();
+    const day = state.days.find(d => d.dayIndex === dayIndex);
+    if (day) {
+      day.screenTime = hours;
+      this.saveState(state);
+    }
+    return state;
+  },
+
+  /**
    * Saves a written answer and its rating.
    */
   saveAnswer(dayIndex, answerId, writtenAnswer, rating, completed, hasFile, aiRemarks) {

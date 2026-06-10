@@ -380,6 +380,19 @@ document.addEventListener("DOMContentLoaded", () => {
     trackerDayIndexLabel.innerText = `Day ${dayObj.dayIndex}`;
     trackerPhaseLabel.innerText = dayObj.phaseName;
 
+    // Screen Time binding
+    const screenTimeInput = document.getElementById("daily-screen-time");
+    if (screenTimeInput) {
+      const newScreenTimeInput = screenTimeInput.cloneNode(true);
+      screenTimeInput.parentNode.replaceChild(newScreenTimeInput, screenTimeInput);
+      newScreenTimeInput.value = dayObj.screenTime !== undefined ? dayObj.screenTime : "";
+      newScreenTimeInput.addEventListener("change", (e) => {
+        let val = parseFloat(e.target.value);
+        if (isNaN(val) || val < 0) val = 0;
+        appState = window.StorageManager.saveScreenTime(dayObj.dayIndex, val);
+      });
+    }
+
     // Add Sunday styling
     if (dayObj.isBuffer) {
       trackerDayCard.classList.add("is-sunday");
