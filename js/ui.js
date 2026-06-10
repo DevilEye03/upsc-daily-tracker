@@ -1243,7 +1243,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 11. Modal, Backup, and Data Restores
+  // 11. Modal, Backup, Cloud Sync, and Data Restores
+
+  const githubPatInput = document.getElementById("github-pat-input");
+  const saveGithubPatBtn = document.getElementById("save-github-pat-btn");
+  const forceSyncBtn = document.getElementById("force-sync-btn");
+  const syncStatusBadge = document.getElementById("sync-status-badge");
+  
+  if (githubPatInput && saveGithubPatBtn) {
+    githubPatInput.value = window.StorageManager.getGithubToken();
+    saveGithubPatBtn.addEventListener("click", () => {
+      window.StorageManager.setGithubToken(githubPatInput.value.trim());
+      saveGithubPatBtn.innerText = "Saved ✓";
+      setTimeout(() => saveGithubPatBtn.innerHTML = '<i class="fas fa-save"></i> Save Token', 1500);
+      window.StorageManager.syncToCloud();
+    });
+  }
+
+  if (forceSyncBtn) {
+    forceSyncBtn.addEventListener("click", async () => {
+      const success = await window.StorageManager.syncFromCloud();
+      if (success) {
+        appState = window.StorageManager.loadState();
+        navigateTo(activeView);
+        alert("Pulled latest data from cloud successfully!");
+      } else {
+        alert("No cloud data found or token is invalid.");
+      }
+    });
+  }
+
+  // Handle Sync Events
+  window.addEventListener('cloud-sync-start', () => {
+    if (syncStatusBadge) {
+      syncStatusBadge.innerText = "Syncing...";
+      syncStatusBadge.style.color = "var(--primary)";
+    }
+  });
+  window.addEventListener('cloud-sync-success', () => {
+    if (syncStatusBadge) {
+      syncStatusBadge.innerText = "Synced Just Now";
+      syncStatusBadge.style.color = "#10b981"; // success green
+    }
+  });
+  window.addEventListener('cloud-sync-error', () => {
+    if (syncStatusBadge) {
+      syncStatusBadge.innerText = "Sync Error";
+      syncStatusBadge.style.color = "#ef4444"; // error red
+    }
+  });
+
+  // Attempt initial sync on load
+  if (window.StorageManager.getGithubToken() && window.StorageManager.getSyncGistId()) {
+      window.StorageManager.syncFromCloud().then(success => {
+          if (success) {
+              appState = window.StorageManager.loadState();
+              navigateTo(activeView);
+          }
+      });
+  }
+
   exportBtn.addEventListener("click", () => {
     window.StorageManager.exportData();
   });

@@ -146,6 +146,7 @@ const StorageManager = {
    */
   saveState(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (this.scheduleCloudSync) this.scheduleCloudSync();
   },
 
   /**
@@ -402,6 +403,123 @@ const StorageManager = {
   resetData() {
     localStorage.removeItem(STORAGE_KEY);
     return this.loadState();
+  },
+
+  // --- GitHub Cloud Sync Logic ---
+  
+  getGithubToken() {
+    return localStorage.getItem("GITHUB_PAT") || "";
+  },
+  
+  setGithubToken(token) {
+    localStorage.setItem("GITHUB_PAT", token);
+  },
+  
+  getSyncGistId() {
+    return localStorage.getItem("SYNC_GIST_ID") || "";
+  },
+  
+  setSyncGistId(id) {
+    localStorage.setItem("SYNC_GIST_ID", id);
+  },
+  
+  syncTimeout: null,
+  scheduleCloudSync() {
+    if (!this.getGithubToken()) return;
+    if (this.syncTimeout) clearTimeout(this.syncTimeout);
+    this.syncTimeout = setTimeout(() => {
+      this.syncToCloud();
+    }, 3000); // Wait 3 seconds after last change
+  },
+  
+  async syncToCloud() {
+    const token = this.getGithubToken();
+    if (!token) return;
+    
+    // Create a deep copy and exclude the Gemini API key if accidentally embedded, but it shouldn't be.
+    const stateStr = localStorage.getItem(STORAGE_KEY);
+    if (!stateStr) return;
+    const gistId = this.getSyncGistId();
+    
+    const headers = {
+      "Authorization": `token ${token}`,
+      "Accept": "application/vnd.github.v3+json",
+      "Content-Type": "application/json"
+    };
+
+    try {
+      // Dispatch event to show 'Syncing...' UI
+      window.dispatchEvent(new CustomEvent('cloud-sync-start'));
+
+      if (gistId) {
+        // Update existing gist
+        const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+          method: "PATCH",
+          headers: headers,
+          body: JSON.stringify({
+            files: {
+              "upsc_tracker_backup.json": { content: stateStr }
+            }
+          })
+        });
+        if (res.ok) window.dispatchEvent(new CustomEvent('cloud-sync-success'));
+        else window.dispatchEvent(new CustomEvent('cloud-sync-error'));
+      } else {
+        // Create new gist
+        const res = await fetch("https://api.github.com/gists", {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({
+            description: "UPSC Daily Tracker Backup",
+            public: false,
+            files: {
+              "upsc_tracker_backup.json": { content: stateStr }
+            }
+          })
+        });
+        const data = await res.json();
+        if (data.id) {
+          this.setSyncGistId(data.id);
+          window.dispatchEvent(new CustomEvent('cloud-sync-success'));
+        } else {
+          window.dispatchEvent(new CustomEvent('cloud-sync-error'));
+        }
+      }
+    } catch (e) {
+      console.error("Cloud sync failed:", e);
+      window.dispatchEvent(new CustomEvent('cloud-sync-error'));
+    }
+  },
+
+  async syncFromCloud() {
+    const token = this.getGithubToken();
+    const gistId = this.getSyncGistId();
+    if (!token || !gistId) return false;
+    
+    try {
+      window.dispatchEvent(new CustomEvent('cloud-sync-start'));
+      const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+        headers: {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github.v3+json"
+        }
+      });
+      const data = await res.json();
+      if (data.files && data.files["upsc_tracker_backup.json"]) {
+        const content = data.files["upsc_tracker_backup.json"].content;
+        const parsed = JSON.parse(content);
+        if (parsed && parsed.days) {
+            localStorage.setItem(STORAGE_KEY, content);
+            window.dispatchEvent(new CustomEvent('cloud-sync-success'));
+            return true;
+        }
+      }
+      window.dispatchEvent(new CustomEvent('cloud-sync-error'));
+    } catch (e) {
+      console.error("Cloud sync pull failed:", e);
+      window.dispatchEvent(new CustomEvent('cloud-sync-error'));
+    }
+    return false;
   }
 };
 
