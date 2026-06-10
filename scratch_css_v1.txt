@@ -1,0 +1,130 @@
+﻿Created At: 2026-06-07T10:56:37Z
+Completed At: 2026-06-07T10:56:37Z
+File Path: `file:///d:/DAILY%20TRACKER/css/main.css`
+Total Lines: 1102
+Total Bytes: 23147
+Showing lines 1 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /* Premium Styling for UPSC CSE 2027 Tracker App */
+2: 
+3: /* Import Google Fonts - Inter & Outfit */
+4: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+5: 
+6: :root {
+7:   /* Color Palette - HSL based */
+8:   --bg-main: hsl(222, 47%, 7%);
+9:   --bg-sidebar: hsl(222, 47%, 10%);
+10:   --bg-card: hsla(222, 47%, 12%, 0.7);
+11:   --bg-card-hover: hsla(222, 47%, 15%, 0.85);
+12:   
+13:   --border-color: hsla(217, 30%, 20%, 0.6);
+14:   --border-glow: hsla(250, 84%, 67%, 0.25);
+15:   
+16:   --text-primary: hsl(210, 40%, 98%);
+17:   --text-secondary: hsl(215, 20%, 75%);
+18:   --text-muted: hsl(215, 16%, 50%);
+19:   
+20:   /* Accent Colors */
+21:   --primary: hsl(250, 84%, 67%);
+22:   --primary-glow: hsla(250, 84%, 67%, 0.4);
+23:   --accent-cyan: hsl(180, 100%, 40%);
+24:   --accent-amber: hsl(45, 100%, 50%);
+25:   
+26:   /* Subject Specific HSLs */
+27:   --color-gs1: hsl(9, 85%, 63%);
+28:   --color-gs2: hsl(174, 80%, 40%);
+29:   --color-gs3: hsl(38, 92%, 50%);
+30:   --color-gs4: hsl(275, 80%, 65%);
+31:   --color-psir: hsl(150, 80%, 40%);
+32:   --color-ca: hsl(203, 90%, 53%);
+33:   --color-essay: hsl(326, 85%, 58%);
+34:   --color-buffer: hsl(190, 70%, 50%);
+35:   
+36:   /* Font Families */
+37:   --font-body: 'Inter', sans-serif;
+38:   --font-display: 'Outfit', sans-serif;
+39:   
+40:   /* Transition timings */
+41:   --transition-fast: 0.2s ease;
+42:   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+43:   
+44:   /* Shadows & Glassmorphism */
+45:   --glass-blur: blur(12px);
+46:   --shadow-premium: 0 8px 32px 0 rgba
+<truncated 17591 bytes>
+rder-radius: 8px;
+728:   color: var(--text-primary);
+729:   padding: 0.75rem;
+730:   font-family: var(--font-body);
+731:   font-size: 0.9rem;
+732:   resize: vertical;
+733:   margin-bottom: 1rem;
+734:   outline: none;
+735:   transition: border-color var(--transition-fast);
+736: }
+737: 
+738: .aw-textarea:focus {
+739:   border-color: var(--primary);
+740: }
+741: 
+742: .aw-controls {
+743:   display: flex;
+744:   justify-content: space-between;
+745:   align-items: center;
+746: }
+747: 
+748: /* Star Rating widget */
+749: .star-rating {
+750:   display: flex;
+751:   gap: 0.25rem;
+752: }
+753: 
+754: .star-rating button {
+755:   background: transparent;
+756:   border: none;
+757:   color: var(--text-muted);
+758:   font-size: 1.25rem;
+759:   cursor: pointer;
+760:   transition: transform var(--transition-fast), color var(--transition-fast);
+761: }
+762: 
+763: .star-rating button:hover {
+764:   transform: scale(1.2);
+765: }
+766: 
+767: .star-rating button.active-star {
+768:   color: var(--accent-amber);
+769: }
+770: 
+771: .aw-save-btn {
+772:   background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+773:   color: var(--text-primary);
+774:   border: none;
+775:   padding: 0.5rem 1.25rem;
+776:   border-radius: 8px;
+777:   font-weight: 600;
+778:   font-size: 0.85rem;
+779:   cursor: pointer;
+780:   box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+781:   transition: all var(--transition-fast);
+782: }
+783: 
+784: .aw-save-btn:hover {
+785:   transform: translateY(-1px);
+786:   box-shadow: 0 6px 15px rgba(99, 102, 241, 0.35);
+787: }
+788: 
+789: /* Syllabus view styles */
+790: .syllabus-tabs {
+791:   display: flex;
+792:   gap: 0.5rem;
+793:   margin-bottom: 1.5rem;
+794:   flex-wrap: wrap;
+795: }
+796: 
+797: .syllabus-tab-btn {
+798:   background-color: var(--bg-card);
+799:   border: 1px solid var(--border-color);
+800:   color: var(--text-secondary);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

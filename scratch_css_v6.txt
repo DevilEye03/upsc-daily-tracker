@@ -1,0 +1,146 @@
+﻿Created At: 2026-06-10T10:40:08Z
+Completed At: 2026-06-10T10:40:08Z
+File Path: `file:///d:/DAILY%20TRACKER/css/main.css`
+Total Lines: 1102
+Total Bytes: 23147
+Showing lines 301 to 600
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+301: 
+302: .stat-icon {
+303:   width: 50px;
+304:   height: 50px;
+305:   border-radius: 12px;
+306:   display: flex;
+307:   align-items: center;
+308:   justify-content: center;
+309:   font-size: 1.5rem;
+310: }
+311: 
+312: .stat-icon.blue { background-color: rgba(99, 102, 241, 0.15); color: var(--primary); }
+313: .stat-icon.green { background-color: rgba(16, 185, 129, 0.15); color: var(--color-psir); }
+314: .stat-icon.amber { background-color: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+315: .stat-icon.sky { background-color: rgba(14, 165, 233, 0.15); color: var(--color-ca); }
+316: 
+317: .stat-info span {
+318:   font-size: 0.8rem;
+319:   color: var(--text-muted);
+320:   text-transform: uppercase;
+321:   letter-spacing: 0.5px;
+322:   font-weight: 600;
+323: }
+324: 
+325: .stat-info h3 {
+326:   font-family: var(--font-display);
+327:   font-size: 1.75rem;
+328:   font-weight: 700;
+329:   margin-top: 0.15rem;
+330: }
+331: 
+332: .stat-info p {
+333:   font-size: 0.8rem;
+334:   color: var(--text-secondary);
+335: }
+336: 
+337: .dashboard-split {
+338:   display: grid;
+339:   grid-template-columns: 2fr 1fr;
+340:   gap: 1.5rem;
+341:   margin-bottom: 2rem;
+342: }
+343: 
+344: .dashboard-schedule-box {
+345:   display: flex;
+346:   flex-direction: column;
+347:   gap: 1.25rem;
+348: }
+349: 
+350: /* Circular Progress Style */
+351: .progress-ring-container {
+352:   display: flex;
+353:   flex-direction: column;
+354:   align-items: center;
+355:   justify-content: center;
+356:   padding: 2rem;
+357:   height: 100%;
+358: }
+359: 
+360: .progress-ring-wrapper {
+361:   position: relative;
+362:   width: 150px;
+363:   heigh
+<truncated 3880 bytes>
+8:   display: flex;
+529:   align-items: flex-start;
+530:   gap: 1.25rem;
+531:   padding: 1.25rem;
+532:   border-radius: 12px;
+533:   border: 1px solid var(--border-color);
+534:   background-color: rgba(255, 255, 255, 0.02);
+535:   transition: all var(--transition-fast);
+536: }
+537: 
+538: .task-item:hover {
+539:   background-color: rgba(255, 255, 255, 0.04);
+540:   border-color: var(--primary);
+541: }
+542: 
+543: /* Custom checkbox animation */
+544: .custom-checkbox {
+545:   position: relative;
+546:   width: 24px;
+547:   height: 24px;
+548:   border: 2px solid var(--border-color);
+549:   border-radius: 6px;
+550:   cursor: pointer;
+551:   flex-shrink: 0;
+552:   display: flex;
+553:   align-items: center;
+554:   justify-content: center;
+555:   transition: all var(--transition-fast);
+556: }
+557: 
+558: .custom-checkbox i {
+559:   color: var(--text-primary);
+560:   font-size: 0.85rem;
+561:   opacity: 0;
+562:   transform: scale(0.5);
+563:   transition: all var(--transition-fast) cubic-bezier(0.12, 0.4, 0.29, 1.46);
+564: }
+565: 
+566: .task-checkbox-input {
+567:   display: none;
+568: }
+569: 
+570: .task-checkbox-input:checked + .custom-checkbox {
+571:   background-color: var(--accent-cyan);
+572:   border-color: var(--accent-cyan);
+573:   box-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+574: }
+575: 
+576: .task-checkbox-input:checked + .custom-checkbox i {
+577:   opacity: 1;
+578:   transform: scale(1);
+579: }
+580: 
+581: .task-checkbox-input:checked ~ .task-content .task-title {
+582:   text-decoration: line-through;
+583:   color: var(--text-muted);
+584: }
+585: 
+586: .task-content {
+587:   flex-grow: 1;
+588: }
+589: 
+590: .task-meta {
+591:   display: flex;
+592:   align-items: center;
+593:   gap: 0.75rem;
+594:   margin-bottom: 0.5rem;
+595: }
+596: 
+597: .task-category-tag {
+598:   font-size: 0.7rem;
+599:   font-weight: 700;
+600:   padding: 0.2rem 0.5rem;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

@@ -1,0 +1,113 @@
+﻿Created At: 2026-06-10T10:40:10Z
+Completed At: 2026-06-10T10:40:10Z
+File Path: `file:///d:/DAILY%20TRACKER/css/main.css`
+Total Lines: 1102
+Total Bytes: 23147
+Showing lines 601 to 900
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+601:   border-radius: 4px;
+602:   text-transform: uppercase;
+603:   letter-spacing: 0.5px;
+604: }
+605: 
+606: /* Category colors */
+607: .tag-gs { background-color: rgba(9, 85, 63, 0.15); color: var(--color-gs1); border: 1px solid rgba(9, 85, 63, 0.3); }
+608: .tag-polity { background-color: rgba(174, 80, 40, 0.15); color: var(--color-gs2); border: 1px solid rgba(174, 80, 40, 0.3); }
+609: .tag-psir { background-color: rgba(16, 185, 129, 0.15); color: var(--color-psir); border: 1px solid rgba(16, 185, 129, 0.3); }
+610: .tag-ca { background-color: rgba(14, 165, 233, 0.15); color: var(--color-ca); border: 1px solid rgba(14, 165, 233, 0.3); }
+611: .tag-csat { background-color: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+612: .tag-essay { background-color: rgba(326, 85, 58, 0.15); color: var(--color-essay); border: 1px solid rgba(326, 85, 58, 0.3); }
+613: .tag-buffer { background-color: rgba(190, 70, 50, 0.15); color: var(--color-buffer); border: 1px solid rgba(190, 70, 50, 0.3); }
+614: 
+615: .task-duration {
+616:   font-size: 0.75rem;
+617:   color: var(--text-muted);
+618:   display: flex;
+619:   align-items: center;
+620:   gap: 0.25rem;
+621: }
+622: 
+623: .task-title {
+624:   font-size: 1rem;
+625:   font-weight: 500;
+626:   line-height: 1.5;
+627:   color: var(--text-primary);
+628:   transition: color var(--transition-fast);
+629: }
+630: 
+631: .task-books {
+632:   font-size: 0.8rem;
+633:   color: var(--text-secondary);
+634:   margin-top: 0.35rem;
+635:   background-color: rgba(255, 255, 255, 0.02);
+636:   padding: 0.4rem 0.75rem;
+637:   border-radius: 
+<truncated 4914 bytes>
+ter;
+836:   width: fit-content;
+837: }
+838: 
+839: .priority-high { background-color: rgba(239, 68, 68, 0.12); color: rgb(239, 68, 68); border: 1px solid rgba(239, 68, 68, 0.3); }
+840: .priority-medium { background-color: rgba(245, 158, 11, 0.12); color: var(--accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+841: .priority-low { background-color: rgba(16, 185, 129, 0.12); color: var(--color-psir); border: 1px solid rgba(16, 185, 129, 0.3); }
+842: 
+843: /* Timeline and phases view */
+844: .timeline-container {
+845:   display: flex;
+846:   flex-direction: column;
+847:   gap: 1.5rem;
+848:   position: relative;
+849:   padding-left: 2rem;
+850:   margin-top: 1rem;
+851: }
+852: 
+853: .timeline-container::before {
+854:   content: '';
+855:   position: absolute;
+856:   left: 8px;
+857:   top: 0;
+858:   bottom: 0;
+859:   width: 2px;
+860:   background-color: var(--border-color);
+861: }
+862: 
+863: .timeline-node {
+864:   position: relative;
+865:   background-color: var(--bg-card);
+866:   border-radius: 12px;
+867:   padding: 1.25rem;
+868:   border: var(--border-glass);
+869: }
+870: 
+871: .timeline-node::before {
+872:   content: '';
+873:   position: absolute;
+874:   left: -28px;
+875:   top: 20px;
+876:   width: 14px;
+877:   height: 14px;
+878:   border-radius: 50%;
+879:   background-color: var(--bg-main);
+880:   border: 3px solid var(--primary);
+881:   z-index: 2;
+882: }
+883: 
+884: .timeline-node.active-node {
+885:   border-color: var(--primary);
+886:   box-shadow: 0 0 15px var(--primary-glow);
+887: }
+888: 
+889: .timeline-node.active-node::before {
+890:   background-color: var(--accent-cyan);
+891:   border-color: var(--accent-cyan);
+892:   box-shadow: 0 0 10px var(--accent-cyan);
+893: }
+894: 
+895: .timeline-header {
+896:   display: flex;
+897:   justify-content: space-between;
+898:   align-items: center;
+899:   margin-bottom: 0.5rem;
+900: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

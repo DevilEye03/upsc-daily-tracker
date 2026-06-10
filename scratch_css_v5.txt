@@ -1,0 +1,134 @@
+﻿Created At: 2026-06-10T10:40:03Z
+Completed At: 2026-06-10T10:40:03Z
+File Path: `file:///d:/DAILY%20TRACKER/css/main.css`
+Total Lines: 1102
+Total Bytes: 23147
+Showing lines 1 to 300
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /* Premium Styling for UPSC CSE 2027 Tracker App */
+2: 
+3: /* Import Google Fonts - Inter & Outfit */
+4: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+5: 
+6: :root {
+7:   /* Color Palette - HSL based */
+8:   --bg-main: hsl(222, 47%, 7%);
+9:   --bg-sidebar: hsl(222, 47%, 10%);
+10:   --bg-card: hsla(222, 47%, 12%, 0.7);
+11:   --bg-card-hover: hsla(222, 47%, 15%, 0.85);
+12:   
+13:   --border-color: hsla(217, 30%, 20%, 0.6);
+14:   --border-glow: hsla(250, 84%, 67%, 0.25);
+15:   
+16:   --text-primary: hsl(210, 40%, 98%);
+17:   --text-secondary: hsl(215, 20%, 75%);
+18:   --text-muted: hsl(215, 16%, 50%);
+19:   
+20:   /* Accent Colors */
+21:   --primary: hsl(250, 84%, 67%);
+22:   --primary-glow: hsla(250, 84%, 67%, 0.4);
+23:   --accent-cyan: hsl(180, 100%, 40%);
+24:   --accent-amber: hsl(45, 100%, 50%);
+25:   
+26:   /* Subject Specific HSLs */
+27:   --color-gs1: hsl(9, 85%, 63%);
+28:   --color-gs2: hsl(174, 80%, 40%);
+29:   --color-gs3: hsl(38, 92%, 50%);
+30:   --color-gs4: hsl(275, 80%, 65%);
+31:   --color-psir: hsl(150, 80%, 40%);
+32:   --color-ca: hsl(203, 90%, 53%);
+33:   --color-essay: hsl(326, 85%, 58%);
+34:   --color-buffer: hsl(190, 70%, 50%);
+35:   
+36:   /* Font Families */
+37:   --font-body: 'Inter', sans-serif;
+38:   --font-display: 'Outfit', sans-serif;
+39:   
+40:   /* Transition timings */
+41:   --transition-fast: 0.2s ease;
+42:   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+43:   
+44:   /* Shadows & Glassmorphism */
+45:   --glass-blur: blur(12px);
+46:   --shadow-premium: 0 8px 32px 0 rgba
+<truncated 4590 bytes>
+ls p {
+224:   font-size: 0.75rem;
+225:   color: var(--text-secondary);
+226: }
+227: 
+228: /* Main Content Styles */
+229: main.main-content {
+230:   flex-grow: 1;
+231:   padding: 2.5rem;
+232:   overflow-y: auto;
+233:   height: 100vh;
+234: }
+235: 
+236: .view-container {
+237:   display: none;
+238:   animation: fade-in var(--transition-normal);
+239: }
+240: 
+241: .view-container.active-view {
+242:   display: block;
+243: }
+244: 
+245: @keyframes fade-in {
+246:   from { opacity: 0; transform: translateY(10px); }
+247:   to { opacity: 1; transform: translateY(0); }
+248: }
+249: 
+250: /* Header Components */
+251: .view-header {
+252:   display: flex;
+253:   justify-content: space-between;
+254:   align-items: center;
+255:   margin-bottom: 2rem;
+256: }
+257: 
+258: .view-header h2 {
+259:   font-family: var(--font-display);
+260:   font-size: 2rem;
+261:   font-weight: 700;
+262:   letter-spacing: -0.5px;
+263: }
+264: 
+265: .view-header p {
+266:   color: var(--text-secondary);
+267:   font-size: 0.95rem;
+268:   margin-top: 0.25rem;
+269: }
+270: 
+271: /* Common Card Styles */
+272: .premium-card {
+273:   background: var(--bg-card);
+274:   border-radius: 16px;
+275:   border: var(--border-glass);
+276:   box-shadow: var(--shadow-premium);
+277:   backdrop-filter: var(--glass-blur);
+278:   -webkit-backdrop-filter: var(--glass-blur);
+279:   padding: 1.75rem;
+280:   transition: transform var(--transition-fast), border-color var(--transition-fast);
+281: }
+282: 
+283: .premium-card:hover {
+284:   border-color: var(--border-color);
+285:   background: var(--bg-card-hover);
+286: }
+287: 
+288: /* Dashboard view elements */
+289: .dashboard-grid {
+290:   display: grid;
+291:   grid-template-columns: repeat(4, 1fr);
+292:   gap: 1.5rem;
+293:   margin-bottom: 2rem;
+294: }
+295: 
+296: .dash-stat-card {
+297:   display: flex;
+298:   align-items: center;
+299:   gap: 1.25rem;
+300: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+

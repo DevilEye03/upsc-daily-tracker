@@ -1,0 +1,109 @@
+﻿Created At: 2026-06-10T10:51:58Z
+Completed At: 2026-06-10T10:51:58Z
+File Path: `file:///d:/DAILY%20TRACKER/scratch_css.txt`
+Total Lines: 131
+Total Bytes: 4123
+Showing lines 1 to 131
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: Created At: 2026-06-07T10:56:37Z
+2: Completed At: 2026-06-07T10:56:37Z
+3: File Path: `file:///d:/DAILY%20TRACKER/css/main.css`
+4: Total Lines: 1102
+5: Total Bytes: 23147
+6: Showing lines 1 to 800
+7: The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+8: 1: /* Premium Styling for UPSC CSE 2027 Tracker App */
+9: 2: 
+10: 3: /* Import Google Fonts - Inter & Outfit */
+11: 4: @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
+12: 5: 
+13: 6: :root {
+14: 7:   /* Color Palette - HSL based */
+15: 8:   --bg-main: hsl(222, 47%, 7%);
+16: 9:   --bg-sidebar: hsl(222, 47%, 10%);
+17: 10:   --bg-card: hsla(222, 47%, 12%, 0.7);
+18: 11:   --bg-card-hover: hsla(222, 47%, 15%, 0.85);
+19: 12:   
+20: 13:   --border-color: hsla(217, 30%, 20%, 0.6);
+21: 14:   --border-glow: hsla(250, 84%, 67%, 0.25);
+22: 15:   
+23: 16:   --text-primary: hsl(210, 40%, 98%);
+24: 17:   --text-secondary: hsl(215, 20%, 75%);
+25: 18:   --text-muted: hsl(215, 16%, 50%);
+26: 19:   
+27: 20:   /* Accent Colors */
+28: 21:   --primary: hsl(250, 84%, 67%);
+29: 22:   --primary-glow: hsla(250, 84%, 67%, 0.4);
+30: 23:   --accent-cyan: hsl(180, 100%, 40%);
+31: 24:   --accent-amber: hsl(45, 100%, 50%);
+32: 25:   
+33: 26:   /* Subject Specific HSLs */
+34: 27:   --color-gs1: hsl(9, 85%, 63%);
+35: 28:   --color-gs2: hsl(174, 80%, 40%);
+36: 29:   --color-gs3: hsl(38, 92%, 50%);
+37: 30:   
+<truncated 1081 bytes>
+ 742: .aw-controls {
+71: 743:   display: flex;
+72: 744:   justify-content: space-between;
+73: 745:   align-items: center;
+74: 746: }
+75: 747: 
+76: 748: /* Star Rating widget */
+77: 749: .star-rating {
+78: 750:   display: flex;
+79: 751:   gap: 0.25rem;
+80: 752: }
+81: 753: 
+82: 754: .star-rating button {
+83: 755:   background: transparent;
+84: 756:   border: none;
+85: 757:   color: var(--text-muted);
+86: 758:   font-size: 1.25rem;
+87: 759:   cursor: pointer;
+88: 760:   transition: transform var(--transition-fast), color var(--transition-fast);
+89: 761: }
+90: 762: 
+91: 763: .star-rating button:hover {
+92: 764:   transform: scale(1.2);
+93: 765: }
+94: 766: 
+95: 767: .star-rating button.active-star {
+96: 768:   color: var(--accent-amber);
+97: 769: }
+98: 770: 
+99: 771: .aw-save-btn {
+100: 772:   background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+101: 773:   color: var(--text-primary);
+102: 774:   border: none;
+103: 775:   padding: 0.5rem 1.25rem;
+104: 776:   border-radius: 8px;
+105: 777:   font-weight: 600;
+106: 778:   font-size: 0.85rem;
+107: 779:   cursor: pointer;
+108: 780:   box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+109: 781:   transition: all var(--transition-fast);
+110: 782: }
+111: 783: 
+112: 784: .aw-save-btn:hover {
+113: 785:   transform: translateY(-1px);
+114: 786:   box-shadow: 0 6px 15px rgba(99, 102, 241, 0.35);
+115: 787: }
+116: 788: 
+117: 789: /* Syllabus view styles */
+118: 790: .syllabus-tabs {
+119: 791:   display: flex;
+120: 792:   gap: 0.5rem;
+121: 793:   margin-bottom: 1.5rem;
+122: 794:   flex-wrap: wrap;
+123: 795: }
+124: 796: 
+125: 797: .syllabus-tab-btn {
+126: 798:   background-color: var(--bg-card);
+127: 799:   border: 1px solid var(--border-color);
+128: 800:   color: var(--text-secondary);
+129: The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+130: 
+131: 
+The above content shows the entire, complete file contents of the requested file.
+

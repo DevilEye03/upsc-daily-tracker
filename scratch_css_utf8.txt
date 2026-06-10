@@ -1,0 +1,92 @@
+﻿Created At: 2026-06-07T10:14:29Z
+Completed At: 2026-06-07T10:14:29Z
+File Path: `file:///d:/DAILY%20TRACKER/index.html`
+Total Lines: 490
+Total Bytes: 25780
+Showing lines 1 to 490
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:   <meta charset="UTF-8">
+5:   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:   <title>UPSC CSE 2027 â€” Micro-Target Tracker & Strategy Command</title>
+7:   <!-- FontAwesome Icons -->
+8:   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+9:   <!-- Stylesheet -->
+10:   <link rel="stylesheet" href="css/main.css">
+11: </head>
+12: <body>
+13: 
+14:   <div class="app-container">
+15:     
+16:     <!-- Sidebar Navigation -->
+17:     <aside class="sidebar">
+18:       <div class="brand">
+19:         <div class="brand-icon">U</div>
+20:         <div class="brand-text">
+21:           <h1>UPSC CSE 2027</h1>
+22:           <span>Target tracker & Strategy</span>
+23:         </div>
+24:       </div>
+25:       
+26:       <nav class="nav-menu">
+27:         <div class="nav-item active" data-target="dashboard">
+28:           <i class="fas fa-chart-pie"></i>
+29:           <span>Dashboard</span>
+30:         </div>
+31:         <div class="nav-item" data-target="tracker">
+32:           <i class="fas fa-calendar-check"></i>
+33:           <span>Daily Tracker</span>
+34:         </div>
+35:         <div class="nav-item" data-target="syllabus">
+36:           <i class="fas fa-book-open"></i>
+37:           <span>Syllabus Explorer</span>
+38:         </div>
+39:         <div class="nav-item" data-target="overlap">
+40:           <i class="fas fa-route"></i>
+41:           <span>Phase Timeline</span>
+42:         </div>
+43:         <div class="nav-item" data-target="analytics">
+44:           <i class="fas fa-ch
+<truncated 24529 bytes>
+(--text-secondary);">
+454:               <li>âŒ <strong>Material Overload:</strong> Sticking to multiple sources. Stick to 1 standard book + 1 current affairs monthly.</li>
+455:               <li>âŒ <strong>Neglecting CSAT:</strong> Failing the qualifying CSAT paper despite excellent GS scores. Give 1 hour daily in Phase 4/5.</li>
+456:               <li>âŒ <strong>Postponing Writing:</strong> Waiting to 'finish the syllabus' before starting answer writing. Start writing immediately.</li>
+457:               <li>âŒ <strong>Zero Revision:</strong> Re-reading new things without revising. Revise the week's targets on Sundays.</li>
+458:               <li>âŒ <strong>Burnout:</strong> Studying 14-16 hours in bursts. Maintain a sustainable 6-7 hours daily consistency.</li>
+459:             </ul>
+460:           </div>
+461:         </div>
+462:       </section>
+463: 
+464:     </main>
+465:   </div>
+466: 
+467:   <!-- Reset Confirmation Modal -->
+468:   <div class="modal-overlay" id="reset-modal">
+469:     <div class="modal-content">
+470:       <button class="modal-close" id="close-reset-modal">&times;</button>
+471:       <div class="modal-title">Reset Progress?</div>
+472:       <div class="modal-body">
+473:         This action will permanently delete all your checkmarks, notes, and written answer logs. This cannot be undone. Are you absolutely sure you want to reset the tracker?
+474:       </div>
+475:       <div class="modal-footer">
+476:         <button class="btn-secondary" id="cancel-reset-btn">Cancel</button>
+477:         <button class="btn-danger" id="confirm-reset-btn">Confirm Reset</button>
+478:       </div>
+479:     </div>
+480:   </div>
+481: 
+482:   <!-- Import JS Scripts -->
+483:   <script src="js/syllabus_data.js"></script>
+484:   <script src="js/schedule_gen.js"></script>
+485:   <script src="js/storage.js"></script>
+486:   <script src="js/charts.js"></script>
+487:   <script src="js/ui.js"></script>
+488: </body>
+489: </html>
+490: 
+The above content shows the entire, complete file contents of the requested file.
+

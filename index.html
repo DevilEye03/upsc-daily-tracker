@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPSC CSE 2027 — Micro-Target Tracker & Strategy Command</title>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">U</div>
+        <div class="brand-text">
+          <h1>UPSC CSE 2027</h1>
+          <span>Target tracker & Strategy</span>
+        </div>
+      </div>
+      
+      <nav class="nav-menu">
+        <div class="nav-item active" data-target="dashboard">
+          <i class="fas fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-target="tracker">
+          <i class="fas fa-calendar-check"></i>
+          <span>Daily Tracker</span>
+        </div>
+        <div class="nav-item" data-target="syllabus">
+          <i class="fas fa-book-open"></i>
+          <span>Syllabus Explorer</span>
+        </div>
+        <div class="nav-item" data-target="overlap">
+          <i class="fas fa-route"></i>
+          <span>Phase Timeline</span>
+        </div>
+        <div class="nav-item" data-target="answers">
+          <i class="fas fa-pen-nib"></i>
+          <span>Answer Writing</span>
+        </div>
+        <div class="nav-item" data-target="analytics">
+          <i class="fas fa-chart-line"></i>
+          <span>Analytics</span>
+        </div>
+        <div class="nav-item" data-target="strategy">
+          <i class="fas fa-award"></i>
+          <span>Strategy & Tips</span>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="streak-card">
+          <i class="fas fa-fire"></i>
+          <div class="streak-details">
+            <h4 id="streak-num">0</h4>
+            <p>Day Study Streak</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      
+      <!-- ================= DASHBOARD VIEW ================= -->
+      <section id="dashboard-view" class="view-container active-view">
+        <div class="view-header">
+          <div>
+            <h2>Prep Dashboard</h2>
+            <p>Welcome back. One step closer to the service.</p>
+          </div>
+          <div>
+            <span class="phase-badge" id="dash-active-phase">Phase 1</span>
+          </div>
+        </div>
+
+        <!-- Stat Numerics -->
+        <div class="dashboard-grid">
+          <div class="premium-card dash-stat-card">
+            <div class="stat-icon blue"><i class="fas fa-tasks"></i></div>
+            <div class="stat-info">
+              <span>Overall Progress</span>
+              <h3 id="dash-pct">0%</h3>
+              <p><span id="dash-completed-tasks">0</span> / <span id="dash-total-tasks">0</span> targets</p>
+            </div>
+          </div>
+          <div class="premium-card dash-stat-card">
+            <div class="stat-icon green"><i class="fas fa-pen-nib"></i></div>
+            <div class="stat-info">
+              <span>Answer Writing</span>
+              <h3 id="dash-aw-pct">0%</h3>
+              <p><span id="dash-completed-answers">0</span> / <span id="dash-total-answers">0</span> written</p>
+            </div>
+          </div>
+          <div class="premium-card dash-stat-card">
+            <div class="stat-icon amber"><i class="fas fa-calendar-alt"></i></div>
+            <div class="stat-info">
+              <span>Daily Target</span>
+              <h3>6 - 7 Hrs</h3>
+              <p>Buffer Day on Sunday</p>
+            </div>
+          </div>
+          <div class="premium-card dash-stat-card">
+            <div class="stat-icon sky"><i class="fas fa-book-reader"></i></div>
+            <div class="stat-info">
+              <span>Optional Target</span>
+              <h3>PSIR</h3>
+              <p>3 revision cycles planned</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gamification & Achievements Section -->
+        <div class="premium-card achievements-card" style="margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 1.25rem; font-family: var(--font-display); font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.75rem;">
+            <i class="fas fa-medal" style="color: #f59e0b; font-size: 1.5rem;"></i> Achievements & Badges
+          </h3>
+          <div class="badges-grid" id="badges-container" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <!-- Badges injected via JS -->
+          </div>
+        </div>
+
+        <!-- Daily Quote & Ethics/Essay Case Example -->
+        <div class="premium-card daily-quote-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--accent-cyan); background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.03));">
+          <div style="display: flex; align-items: flex-start; gap: 1.25rem;">
+            <div class="quote-icon" style="font-size: 1.75rem; color: var(--accent-cyan); margin-top: 0.15rem;"><i class="fas fa-quote-left"></i></div>
+            <div style="flex-grow: 1;">
+              <h4 style="font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 0.35rem;" id="dash-quote-title">Daily Quote</h4>
+              <p style="font-size: 0.95rem; line-height: 1.5; font-style: italic; color: var(--text-primary);" id="dash-quote-text">"Quote text..."</p>
+              
+              <div style="margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.25rem;">
+                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-amber); letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.3rem;"><i class="fas fa-lightbulb"></i> Ethics & Essay Goldmine (Example for Mains)</span>
+                <p style="font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary);" id="dash-quote-example">"Example description..."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-split">
+          <!-- Today's Schedule Card -->
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1.25rem;">Today's Micro Targets</h3>
+            <div id="today-tasks-checklist" class="dashboard-schedule-box">
+              <!-- Dynamically populated today targets -->
+            </div>
+          </div>
+          
+          <!-- Circular Progress Circle -->
+          <div class="premium-card progress-ring-container">
+            <h4 style="font-family: var(--font-display); font-weight: 600; margin-bottom: 1rem; text-align: center;">Preparation Level</h4>
+            <div class="progress-ring-wrapper">
+              <svg class="progress-ring" width="150" height="150">
+                <defs>
+                  <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--primary)" />
+                    <stop offset="100%" stop-color="var(--accent-cyan)" />
+                  </linearGradient>
+                </defs>
+                <circle class="progress-ring-circle-bg" cx="75" cy="75" r="70" />
+                <circle class="progress-ring-circle" id="progress-circle-fill" cx="75" cy="75" r="70" stroke-dasharray="440" stroke-dashoffset="440" />
+              </svg>
+              <div class="progress-ring-text" id="dash-pct-ring">0%<span>Completed</span></div>
+            </div>
+            <p id="dash-phase-desc" style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; margin-top: 1.25rem; line-height: 1.4;"></p>
+          </div>
+        </div>
+
+        <!-- Today's Answer Writing (Mains PYQs) -->
+        <div class="premium-card" style="margin-top: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fas fa-pen-nib" style="color: var(--accent-cyan);"></i> Today's Daily PYQ Questions (GS Mains)
+            </h3>
+            <a href="#tracker" style="font-size: 0.8rem; padding: 0.4rem 1rem; border-radius: 6px; background: linear-gradient(135deg, var(--primary), var(--accent-cyan)); color: var(--text-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem;" onclick="document.querySelectorAll('.nav-item').forEach(item => { if(item.getAttribute('data-target') === 'tracker') item.click(); });">
+              Write & Rate Answers <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div id="dashboard-pyqs-list" style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <!-- Dynamically populated daily PYQs -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DAILY TRACKER VIEW ================= -->
+      <section id="tracker-view" class="view-container">
+        <div class="view-header">
+          <div>
+            <h2>Daily Schedule & Logger</h2>
+            <p>Commit to the process. Record targets and answers daily.</p>
+          </div>
+          <div class="timer-container premium-card" style="padding: 0.75rem 1.25rem; flex-direction: row; gap: 1.5rem;">
+            <div class="timer-display" id="timer-time" style="font-size: 1.75rem;">00:00:00</div>
+            <div class="timer-controls">
+              <button class="timer-btn" id="timer-toggle">Start</button>
+              <button class="timer-btn" id="timer-reset">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tracker-layout">
+          <!-- Calendar Selector Sidebar -->
+          <div class="calendar-sidebar">
+            <div class="premium-card">
+              <div class="datepicker-header">
+                <h4 id="cal-month-year">June 2026</h4>
+                <div class="datepicker-arrows">
+                  <button id="prev-month-btn"><i class="fas fa-chevron-left"></i></button>
+                  <button id="next-month-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+              </div>
+              <div class="calendar-grid" id="calendar-days-header">
+                <div class="calendar-weekday">M</div>
+                <div class="calendar-weekday">T</div>
+                <div class="calendar-weekday">W</div>
+                <div class="calendar-weekday">T</div>
+                <div class="calendar-weekday">F</div>
+                <div class="calendar-weekday">S</div>
+                <div class="calendar-weekday">S</div>
+              </div>
+              <div class="calendar-grid" id="calendar-days">
+                <!-- Dynamically populated dates -->
+              </div>
+            </div>
+            
+            <div class="premium-card" style="font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+              <h4 style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;"><i class="fas fa-info-circle"></i> Legend</h4>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;"><span style="width:10px; height:10px; background-color:var(--primary); border-radius:50%;"></span> Selected Date</div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;"><span style="width:10px; height:10px; background-color:rgba(16, 185, 129, 0.15); border:1px solid rgba(16, 185, 129, 0.4); border-radius:50%;"></span> Day Fully Completed</div>
+              <div style="display:flex; align-items:center; gap:0.5rem;"><span style="width:10px; height:10px; color:var(--color-buffer); font-weight:bold; font-size:0.75rem;">S</span> Sunday Buffer Day</div>
+            </div>
+          </div>
+
+          <!-- Schedule Checklists & Answer Logs -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Day header -->
+            <div class="premium-card day-header-card" id="tracker-day-header">
+              <div class="day-info">
+                <h3 id="tracker-date-label">Friday, June 12, 2026</h3>
+                <p id="tracker-phase-label" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;"></p>
+              </div>
+              <div class="phase-badge" id="tracker-day-index" style="background-color: var(--primary-glow); color: var(--text-primary);">Day 1</div>
+            </div>
+
+            <!-- Daily checklist items -->
+            <div class="premium-card">
+              <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1.25rem;"><i class="fas fa-list-check"></i> Study Slots Checklist</h3>
+              <div id="daily-tasks-list" class="tasks-container">
+                <!-- Dynamically populated slots -->
+              </div>
+            </div>
+
+            <!-- Daily Answer Writing -->
+            <div class="premium-card">
+              <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 0.5rem;"><i class="fas fa-edit"></i> Daily Answer Writing (Mains Focus)</h3>
+              <p style="color:var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Answers are now managed in the dedicated Answer Writing section.</p>
+              <button class="timer-btn" onclick="document.querySelector('.nav-item[data-target=\'answers\']').click()" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem;">
+                <i class="fas fa-external-link-alt"></i> Go to Answer Writing Vault
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ANSWER WRITING VIEW ================= -->
+      <section id="answers-view" class="view-container">
+        <div class="view-header" style="flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2>Answer Writing Vault</h2>
+            <p>Upload written answers, check status, and review past performance.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; align-items: center; background: rgba(255,255,255,0.02); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <i class="fas fa-robot" style="color: var(--accent-cyan);"></i>
+            <input type="password" id="gemini-api-key-input" placeholder="Enter Gemini API Key for AI Evaluation..." style="padding: 0.4rem; border-radius: 4px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: var(--text-primary); font-size: 0.8rem; width: 220px; outline: none;">
+            <button class="timer-btn" id="save-gemini-key-btn" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;"><i class="fas fa-save"></i> Save</button>
+          </div>
+        </div>
+
+        <div class="premium-card">
+          <!-- Answer writing filters (optional) -->
+          <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <button class="syllabus-tab-btn active-tab" id="aw-tab-today">Today's Questions</button>
+            <button class="syllabus-tab-btn" id="aw-tab-past">Past Uploads</button>
+          </div>
+
+          <div id="answers-vault-list" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Dynamically populated answer writing vault items -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SYLLABUS VIEW ================= -->
+      <section id="syllabus-view" class="view-container">
+        <div class="view-header">
+          <div>
+            <h2>UPSC Syllabus Explorer & Priority Matrix</h2>
+            <p>Mapped to PYQ priorities from the last 5 years' papers.</p>
+          </div>
+        </div>
+
+        <div class="premium-card">
+          <!-- Syllabus Paper Tabs -->
+          <div class="syllabus-tabs" id="syllabus-tabs-wrapper">
+            <button class="syllabus-tab-btn active-tab" data-paper="gs1">GS 1: History, Geo, Society</button>
+            <button class="syllabus-tab-btn" data-paper="gs2">GS 2: Polity, Gov, IR</button>
+            <button class="syllabus-tab-btn" data-paper="gs3">GS 3: Econ, S&T, Security</button>
+            <button class="syllabus-tab-btn" data-paper="gs4">GS 4: Ethics</button>
+            <button class="syllabus-tab-btn" data-paper="psir1">PSIR Optional Paper I</button>
+            <button class="syllabus-tab-btn" data-paper="psir2">PSIR Optional Paper II</button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <!-- Syllabus table headers -->
+            <div class="syllabus-topic-row" style="border-bottom: 2px solid var(--border-color); font-weight: 700; color: var(--text-primary);">
+              <div>Topic / Subject Unit</div>
+              <div>Detailed Syllabus Scope</div>
+              <div>PYQ Weight (Priority)</div>
+              <div>Completion Rate</div>
+            </div>
+            <!-- Topic rows container -->
+            <div id="syllabus-grid-body">
+              <!-- Dynamically populated syllabus units -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PHASE OVERVIEW VIEW ================= -->
+      <section id="overlap-view" class="view-container">
+        <div class="view-header">
+          <div>
+            <h2>Phase Roadmaps & Timeline</h2>
+            <p>Comprehensive 5-phase preparation trajectory.</p>
+          </div>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Phase 1 Node -->
+          <div class="timeline-node" data-phase="1">
+            <div class="timeline-header">
+              <h3>Phase 1: 1st Reading Cycle</h3>
+              <span class="timeline-dates">Jun 12 - Sep 15, 2026 (96 days)</span>
+            </div>
+            <p class="timeline-desc">First detailed revisions of Mains syllabus GS 1-4 and PSIR Optional Paper 1 & 2. 5 daily answers practice (2 GS, 2 Optional, 1 CA) to build structured writing stamina.</p>
+            <div class="timeline-progress">
+              <div class="timeline-progress-bar">
+                <div class="timeline-progress-fill" id="phase-progress-fill-1" style="width: 0%;"></div>
+              </div>
+              <span class="timeline-percentage" id="phase-progress-pct-1">0%</span>
+            </div>
+          </div>
+
+          <!-- Phase 2 Node -->
+          <div class="timeline-node" data-phase="2">
+            <div class="timeline-header">
+              <h3>Phase 2: Mains Rev-2 & Mocks</h3>
+              <span class="timeline-dates">Sep 16 - Nov 30, 2026 (76 days)</span>
+            </div>
+            <p class="timeline-desc">Second Mains and Optional revision cycles. Includes weekly essay outlines (Saturdays), full-length mains mock simulation blocks, and refining of micro notes.</p>
+            <div class="timeline-progress">
+              <div class="timeline-progress-bar">
+                <div class="timeline-progress-fill" id="phase-progress-fill-2" style="width: 0%;"></div>
+              </div>
+              <span class="timeline-percentage" id="phase-progress-pct-2">0%</span>
+            </div>
+          </div>
+
+          <!-- Phase 3 Node -->
+          <div class="timeline-node" data-phase="3">
+            <div class="timeline-header">
+              <h3>Phase 3: Overlap Revision</h3>
+              <span class="timeline-dates">Dec 1, 2026 - Feb 15, 2027 (77 days)</span>
+            </div>
+            <p class="timeline-desc">Combined Prelims + Mains (overlap) revision. Focuses on Polity, Economy, Modern History, Geography, and Environment. PSIR Optional 3rd consolidation.</p>
+            <div class="timeline-progress">
+              <div class="timeline-progress-bar">
+                <div class="timeline-progress-fill" id="phase-progress-fill-3" style="width: 0%;"></div>
+              </div>
+              <span class="timeline-percentage" id="phase-progress-pct-3">0%</span>
+            </div>
+          </div>
+
+          <!-- Phase 4 Node -->
+          <div class="timeline-node" data-phase="4">
+            <div class="timeline-header">
+              <h3>Phase 4: Prelims Revision 1</h3>
+              <span class="timeline-dates">Feb 16 - Apr 15, 2027 (59 days)</span>
+            </div>
+            <p class="timeline-desc">Shift to 100% Prelims focus. Intensely revise core static books (Laxmikanth, Spectrum, Shankar, NCERTs). CSAT weekly practice (1hr daily slot) + Sectional mocks.</p>
+            <div class="timeline-progress">
+              <div class="timeline-progress-bar">
+                <div class="timeline-progress-fill" id="phase-progress-fill-4" style="width: 0%;"></div>
+              </div>
+              <span class="timeline-percentage" id="phase-progress-pct-4">0%</span>
+            </div>
+          </div>
+
+          <!-- Phase 5 Node -->
+          <div class="timeline-node" data-phase="5">
+            <div class="timeline-header">
+              <h3>Phase 5: Prelims Revision 2</h3>
+              <span class="timeline-dates">Apr 16 - May 20, 2027 (35 days)</span>
+            </div>
+            <p class="timeline-desc">Final sprint before May 2027 Prelims. Multiple full-length mock tests, intense mapping practice, CSAT full simulation tests, and rapid revision of core factual data sheets.</p>
+            <div class="timeline-progress">
+              <div class="timeline-progress-bar">
+                <div class="timeline-progress-fill" id="phase-progress-fill-5" style="width: 0%;"></div>
+              </div>
+              <span class="timeline-percentage" id="phase-progress-pct-5">0%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ANALYTICS VIEW ================= -->
+      <section id="analytics-view" class="view-container">
+        <div class="view-header">
+          <div>
+            <h2>Preparation Analytics</h2>
+            <p>Deep-dive insights into your study momentum, answer quality, subject mastery, and schedule adherence.</p>
+          </div>
+        </div>
+
+        <!-- ── ROW 1: 8 KPI CARDS ── -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 0.9rem; margin-bottom: 1.5rem;">
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid var(--accent-amber);">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-fire"></i> Current Streak</div>
+            <div id="kpi-streak" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: var(--accent-amber);">-</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">days in a row</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid #a78bfa;">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-trophy"></i> Longest Streak</div>
+            <div id="kpi-longest-streak" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: #a78bfa;">-</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">days record</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid var(--accent-cyan);">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-bolt"></i> 30-Day Velocity</div>
+            <div id="kpi-30day-velocity" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: var(--text-primary);">-</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">task completion</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid var(--accent-amber);">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-star"></i> Avg Answer Rating</div>
+            <div id="kpi-avg-rating" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: var(--text-primary);">-</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">out of 10</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid #34d399;">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-pen"></i> Answers Written</div>
+            <div id="kpi-answers-written" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: #34d399;">-</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">total submitted</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid #38bdf8;">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-calendar-check"></i> Days Studied</div>
+            <div id="kpi-days-studied" style="font-size: 2rem; font-weight: 800; font-family: var(--font-display); color: #38bdf8;">-</div>
+            <div id="kpi-days-studied-sub" style="font-size: 0.7rem; color: var(--text-muted);">of total days</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid var(--color-psir);">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-dumbbell"></i> Strongest Area</div>
+            <div id="kpi-strongest-subject" style="font-size: 1.1rem; font-weight: 700; font-family: var(--font-display); color: var(--text-primary); margin-top: 0.4rem; line-height: 1.2;">-</div>
+          </div>
+          <div class="premium-card" style="padding: 1rem; text-align: center; border-bottom: 3px solid var(--color-essay);">
+            <div style="color: var(--text-muted); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"><i class="fas fa-bullseye"></i> Focus Needed</div>
+            <div id="kpi-weakest-subject" style="font-size: 1.1rem; font-weight: 700; font-family: var(--font-display); color: var(--text-primary); margin-top: 0.4rem; line-height: 1.2;">-</div>
+          </div>
+        </div>
+
+        <!-- ── ROW 2: PHASE PROGRESS BARS ── -->
+        <div class="premium-card" style="margin-bottom: 1.5rem; padding: 1.25rem;">
+          <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1.1rem;"><i class="fas fa-layer-group"></i> Phase-wise Progress</h3>
+          <div id="phase-progress-bars" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+        </div>
+
+        <!-- ── ROW 3: CUMULATIVE CURVE + WEEKLY TASK BARS ── -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-chart-area"></i> Cumulative Completion Curve</h3>
+            <div class="canvas-holder">
+              <canvas id="cumulative-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-chart-column"></i> Last 7 Days Task Completion</h3>
+            <div class="canvas-holder">
+              <canvas id="weekly-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ROW 4: ANSWER MOMENTUM + GS vs PSIR RATINGS ── -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-pen-nib"></i> Answer Writing Momentum (Weekly)</h3>
+            <div class="canvas-holder">
+              <canvas id="momentum-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-scale-balanced"></i> GS vs PSIR Rating Comparison</h3>
+            <div class="canvas-holder">
+              <canvas id="gs-psir-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ROW 5: ANSWER QUALITY TREND + SUBJECT DISTRIBUTION ── -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-chart-line"></i> Answer Quality Trend (Last 14)</h3>
+            <div class="canvas-holder">
+              <canvas id="quality-trend-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-chart-pie"></i> Study Area Distribution</h3>
+            <div class="canvas-holder">
+              <canvas id="pie-canvas" width="400" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ROW 6: SUBJECT MASTERY TABLE ── -->
+        <div class="premium-card" style="margin-bottom: 1.5rem; padding: 1.25rem;">
+          <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1.1rem;"><i class="fas fa-table-list"></i> Subject-wise Mastery Breakdown</h3>
+          <div id="subject-mastery-table" style="overflow-x: auto;"></div>
+        </div>
+
+        <!-- ── ROW 7: SUBJECT PROFICIENCY BARS ── -->
+        <div class="premium-card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-chart-bar"></i> Subject Proficiency (Task Completion %)</h3>
+          <div class="canvas-holder">
+            <canvas id="proficiency-canvas" width="400" height="250"></canvas>
+          </div>
+        </div>
+
+        <!-- ── ROW 8: CONSISTENCY HEATMAP ── -->
+        <div class="premium-card" style="margin-bottom: 1.5rem;">
+          <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem;"><i class="fas fa-calendar-days"></i> Prep Consistency Map (June 2026 - May 2027)</h3>
+          <div class="canvas-holder" style="height: 180px; overflow-x: auto; display: flex; justify-content: flex-start;">
+            <canvas id="heatmap-canvas" width="800" height="150"></canvas>
+          </div>
+        </div>
+
+        <!-- Backup & Admin panel -->
+        <div class="premium-card">
+          <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1.25rem;"><i class="fas fa-database"></i> Backup & Data Management</h3>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="timer-btn" id="export-backup-btn"><i class="fas fa-download"></i> Export JSON Backup</button>
+            <button class="timer-btn" id="import-backup-btn"><i class="fas fa-upload"></i> Import JSON Backup</button>
+            <input type="file" id="import-file-input" class="import-input" accept=".json">
+            <button class="btn-danger" id="reset-tracker-btn"><i class="fas fa-trash-alt"></i> Reset All Data</button>
+          </div>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.75rem;"><i class="fas fa-exclamation-triangle"></i> This app operates 100% locally. Clearing browser data or changing browsers will wipe progress. Always export backups weekly.</p>
+        </div>
+      </section>
+
+      <!-- ================= STRATEGY VIEW ================= -->
+      <section id="strategy-view" class="view-container">
+        <div class="view-header">
+          <div>
+            <h2>UPSC Strategy & Expert Guidelines</h2>
+            <p>Strategic tips and references designed by a twice-qualified CSE candidate.</p>
+          </div>
+        </div>
+
+        <div class="tips-grid">
+          <!-- Booklist Card -->
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem; color: var(--accent-cyan);"><i class="fas fa-book"></i> The Standard Booklist</h3>
+            <ul style="list-style-type: none; font-size: 0.9rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.75rem; color: var(--text-secondary);">
+              <li><strong>Modern India:</strong> Spectrum (A Brief History) + Bipan Chandra</li>
+              <li><strong>Art & Culture:</strong> Nitin Singhania + NCERT Class 11 Fine Arts</li>
+              <li><strong>Polity & Gov:</strong> M. Laxmikanth (Indian Polity + Governance)</li>
+              <li><strong>Economy:</strong> Ramesh Singh / Nitin Singhania + Economic Survey & Budget</li>
+              <li><strong>Environment:</strong> Shankar IAS (latest edition)</li>
+              <li><strong>Science & Tech:</strong> Ravi P. Agrahari + Monthly Current Affairs</li>
+              <li><strong>Ethics (GS4):</strong> Lexicon for Ethics + 2nd ARC (4th report)</li>
+              <li><strong>PSIR Optional:</strong> O.P. Gauba (Political Theory), Andrew Heywood (Global Politics), Rajiv Sikri (India's Foreign Policy), Oxford Companion to Indian Politics</li>
+            </ul>
+          </div>
+
+          <!-- Answer Writing Card -->
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem; color: var(--accent-amber);"><i class="fas fa-pen-fancy"></i> The 7-5-3 Rule of Answer Writing</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);">
+              To excel in Mains, standardizing your answer flow is critical. Master the 7-5-3 approach:
+            </p>
+            <div class="rule-highlight">
+              <strong>7 Minutes:</strong> The maximum time to write a 10-mark (150-word) question.<br>
+              <strong>5 Dimensions:</strong> Cover Social, Economic, Political, Geographical, and Ethical views in the body.<br>
+              <strong>3 Sections:</strong> Always write in clear blocks: Introduction, Body (points/diagrams), and a futuristic Conclusion.
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+              *Always use subheadings rather than long paragraphs. Introduce diagrams/flowcharts wherever possible. Link static concepts directly to current affairs.
+            </p>
+          </div>
+
+          <!-- Current Affairs Card -->
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem; color: var(--color-ca);"><i class="fas fa-newspaper"></i> Current Affairs Strategy</h3>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary);">
+              <strong>Daily (1.0 hr):</strong> Read *The Hindu* or *The Indian Express* (focus heavily on Editorial & Explained page). Note key phrases and committee names. Avoid writing down everything; compile only what can be quoted in mains.
+            </p>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-top: 0.5rem;">
+              <strong>Monthly (10 hrs):</strong> Go through one standard monthly compilation (e.g. Vision IAS). Read it to fill in gaps from daily newspaper study.
+            </p>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin-top: 0.5rem;">
+              <strong>Optional Integration:</strong> Use Observer Research Foundation (ORF), IDSA, and MEA statements to supply scholars and actual quotes for PSIR Paper 2.
+            </p>
+          </div>
+
+          <!-- Common Mistakes Card -->
+          <div class="premium-card">
+            <h3 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 1rem; color: var(--color-gs1);"><i class="fas fa-circle-xmark"></i> Pitfalls to Avoid</h3>
+            <ul style="list-style-type: none; font-size: 0.85rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-secondary);">
+              <li>❌ <strong>Material Overload:</strong> Sticking to multiple sources. Stick to 1 standard book + 1 current affairs monthly.</li>
+              <li>❌ <strong>Neglecting CSAT:</strong> Failing the qualifying CSAT paper despite excellent GS scores. Give 1 hour daily in Phase 4/5.</li>
+              <li>❌ <strong>Postponing Writing:</strong> Waiting to 'finish the syllabus' before starting answer writing. Start writing immediately.</li>
+              <li>❌ <strong>Zero Revision:</strong> Re-reading new things without revising. Revise the week's targets on Sundays.</li>
+              <li>❌ <strong>Burnout:</strong> Studying 14-16 hours in bursts. Maintain a sustainable 6-7 hours daily consistency.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div class="modal-overlay" id="reset-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="close-reset-modal">&times;</button>
+      <div class="modal-title">Reset Progress?</div>
+      <div class="modal-body">
+        This action will permanently delete all your checkmarks, notes, and written answer logs. This cannot be undone. Are you absolutely sure you want to reset the tracker?
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancel-reset-btn">Cancel</button>
+        <button class="btn-danger" id="confirm-reset-btn">Confirm Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import JS Scripts -->
+  <script src="js/syllabus_data.js"></script>
+  <script src="js/real_pyqs_data.js"></script>
+  <script src="js/quotes_data.js"></script>
+  <script src="js/schedule_gen.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/ui.js"></script>
+
+
+</body>
+</html>
