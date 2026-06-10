@@ -930,6 +930,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const proficiencyCanvas = document.getElementById('proficiency-canvas');
     if (proficiencyCanvas) window.CanvasCharts.drawProficiencyBarChart(proficiencyCanvas, categoryProficiency);
 
+    // ── MOBILE SCREEN TIME TREND ──
+    const screenTimeTrendData = [];
+    appState.days.forEach(d => {
+      if (d.date <= today && d.screenTime !== undefined) {
+        screenTimeTrendData.push({ label: new Date(d.date).toLocaleDateString('en-IN', {day:'numeric', month:'short'}), hours: d.screenTime, fullDate: d.date });
+      }
+    });
+    screenTimeTrendData.sort((a,b) => new Date(a.fullDate) - new Date(b.fullDate));
+    const screenTimeCanvas = document.getElementById('screen-time-canvas');
+    if (screenTimeCanvas) window.CanvasCharts.drawScreenTimeTrend(screenTimeCanvas, screenTimeTrendData.slice(-14).map(x => ({dateLabel: x.label, hours: x.hours})));
+
     // ── CONSISTENCY HEATMAP ──
     const heatmapCanvas = document.getElementById('heatmap-canvas');
     window.CanvasCharts.drawConsistencyHeatmap(heatmapCanvas, appState.days);

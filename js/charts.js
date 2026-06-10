@@ -670,6 +670,97 @@ const CanvasCharts = {
     // Center divider line
     ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(W / 2, pad); ctx.lineTo(W / 2, H - pad); ctx.stroke();
+  },
+
+  /**
+   * Mobile Screen Time Trend (Last 14 days)
+   * @param {HTMLCanvasElement} canvas
+   * @param {Array} trendData — [{dateLabel, hours}]
+   */
+  drawScreenTimeTrend(canvas, trendData) {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (!trendData || trendData.length === 0) {
+      ctx.fillStyle = '#8b949e'; ctx.font = '13px Inter'; ctx.textAlign = 'center';
+      ctx.fillText('No screen time data logged', canvas.width / 2, canvas.height / 2);
+      return;
+    }
+
+    const W = canvas.width, H = canvas.height;
+    const padX = 40, padY = 30;
+    const cW = W - 2 * padX;
+    const cH = H - 2 * padY;
+    const maxHours = Math.max(...trendData.map(d => d.hours || 0), 5); // Minimum 5 hrs to scale nicely
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+      const y = padY + (cH * i) / 5;
+      ctx.beginPath(); ctx.moveTo(padX, y); ctx.lineTo(W - padX, y); ctx.stroke();
+      ctx.fillStyle = '#8b949e'; ctx.font = '10px Inter'; ctx.textAlign = 'right';
+      ctx.fillText((maxHours - (maxHours * i) / 5).toFixed(1) + 'h', padX - 6, y + 3);
+    }
+
+    // Line and Area
+    const gap = cW / Math.max(trendData.length - 1, 1);
+    
+    ctx.beginPath();
+    ctx.moveTo(padX, padY + cH);
+    
+    const points = [];
+    trendData.forEach((d, i) => {
+      const x = padX + i * gap;
+      const y = padY + cH - ((d.hours || 0) / maxHours) * cH;
+      points.push({x, y});
+      if (i === 0) ctx.lineTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    
+    ctx.lineTo(points[points.length - 1].x, padY + cH);
+    ctx.closePath();
+    
+    // Fill
+    const grad = ctx.createLinearGradient(0, padY, 0, padY + cH);
+    grad.addColorStop(0, 'rgba(239,68,68,0.4)'); // Red color for screen time
+    grad.addColorStop(1, 'rgba(239,68,68,0.0)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    points.forEach((p, i) => {
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Points and labels
+    points.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#ef4444';
+      ctx.fill();
+      ctx.strokeStyle = '#0d1117';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Tooltip/Value
+      if (trendData[i].hours > 0) {
+        ctx.fillStyle = '#e6edf3'; ctx.font = 'bold 11px Inter'; ctx.textAlign = 'center';
+        ctx.fillText(trendData[i].hours + 'h', p.x, p.y - 10);
+      }
+
+      // X-axis label
+      if (i % Math.ceil(trendData.length / 7) === 0 || i === trendData.length - 1) {
+        ctx.fillStyle = '#8b949e'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+        ctx.fillText(trendData[i].dateLabel, p.x, H - 10);
+      }
+    });
   }
 };
 
